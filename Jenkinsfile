@@ -25,9 +25,9 @@ pipeline {
           sh 'mvn clean install -f $WORKSPACE/shopfront/pom.xml'
           dockerImage1 = docker.build (dockerimagename1, "./shopfront/")
           sh 'mvn clean install -f $WORKSPACE/stockmanager/pom.xml'
-          dockerImage2 = docker.build dockerimagename2
-          sh 'mvn clean install $WORKSPACE/ productcatalogue/pom.xml'
-          dockerImage3 = docker.build dockerimagename3
+          dockerImage2 = docker.build (dockerimagename2, "./stockmanager/")
+          sh 'mvn clean install $WORKSPACE/productcatalogue/pom.xml'
+          dockerImage3 = docker.build (dockerimagename3, "./productcatalogue/")
         }
       }
     }
