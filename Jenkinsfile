@@ -23,12 +23,10 @@ pipeline {
       steps{
         script {
           sh 'mvn clean install -f $WORKSPACE/shopfront/pom.xml'
-          sh 'echo $WORKSPACE'
-          sh 'pwd'
           dockerImage1 = docker.build (dockerimagename1, "./shopfront/")
-          sh 'cd stockmanager'
+          sh 'mvn clean install -f $WORKSPACE/stockmanager/pom.xml'
           dockerImage2 = docker.build dockerimagename2
-          sh 'cd productcatalogue'
+          sh 'mvn clean install $WORKSPACE/ productcatalogue/pom.xml'
           dockerImage3 = docker.build dockerimagename3
         }
       }
