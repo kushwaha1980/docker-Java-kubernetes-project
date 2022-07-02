@@ -22,7 +22,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          sh 'cd $WORKSPACE/shopfront'
+          sh 'mvn clean install -f $WORKSPACE/shopfront/pom.xml'
           sh 'echo $WORKSPACE'
           sh 'pwd'
           dockerImage1 = docker.build (dockerimagename1, "./shopfront/")
