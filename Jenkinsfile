@@ -24,7 +24,8 @@ pipeline {
         script {
           sh 'cd $WORKSPACE/shopfront'
           sh 'echo $WORKSPACE'
-          dockerImage1 = docker.build dockerimagename1
+          sh 'pwd'
+          dockerImage1 = docker.build (dockerimagename1, "./shopfront/")
           sh 'cd stockmanager'
           dockerImage2 = docker.build dockerimagename2
           sh 'cd productcatalogue'
