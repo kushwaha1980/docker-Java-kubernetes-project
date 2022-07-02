@@ -22,8 +22,8 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          sh 'cd shopfront'
-          sh 'pwd'
+          sh 'cd $WORKSPACE/shopfront'
+          sh 'echo $WORKSPACE'
           dockerImage1 = docker.build dockerimagename1
           sh 'cd stockmanager'
           dockerImage2 = docker.build dockerimagename2
