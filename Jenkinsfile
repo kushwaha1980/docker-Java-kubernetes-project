@@ -23,6 +23,7 @@ pipeline {
       steps{
         script {
           sh 'cd shopfront'
+          sh 'pwd'
           dockerImage1 = docker.build dockerimagename1
           sh 'cd stockmanager'
           dockerImage2 = docker.build dockerimagename2
