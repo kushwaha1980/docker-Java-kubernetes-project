@@ -24,10 +24,6 @@ pipeline {
         script {
           sh 'mvn clean install -f $WORKSPACE/shopfront/pom.xml'
           dockerImage1 = docker.build (dockerimagename1, "./shopfront/")
-#          sh 'mvn clean install -f $WORKSPACE/stockmanager/pom.xml'
-#          dockerImage2 = docker.build (dockerimagename2, "./stockmanager/")
-#          sh 'mvn clean install -f $WORKSPACE/productcatalogue/pom.xml'
-#          dockerImage3 = docker.build (dockerimagename3, "./productcatalogue/")
         }
       }
     }
@@ -40,8 +36,6 @@ pipeline {
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage1.push("latest")
-#            dockerImage2.push("latest")
-#            dockerImage3.push("latest")
           }
         }
       }
@@ -51,9 +45,7 @@ pipeline {
       steps {
         script {
           sh 'cd kubernetes'
-#          kubernetesDeploy(configs: "kubernetes/stockmanager-service.yaml", kubeconfigId: "kubernetes")
           kubernetesDeploy(configs: "kubernetes/shopfront-service.yaml", kubeconfigId: "kubernetes")
-#          kubernetesDeploy(configs: "kubernetes/productcatalogue-service.yaml", kubeconfigId: "kubernetes")
         }
       }
     }
