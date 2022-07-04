@@ -51,9 +51,9 @@ pipeline {
       steps {
         script {
           sh 'cd kubernetes'
-#          kubernetesDeploy(configs: "kubernetes/stockmanager-service.yaml", kubeconfigId: "kubernetes")
+          kubernetesDeploy(configs: "kubernetes/stockmanager-service.yaml", kubeconfigId: "kubernetes")
           kubernetesDeploy(configs: "kubernetes/shopfront-service.yaml", kubeconfigId: "kubernetes")
-#          kubernetesDeploy(configs: "kubernetes/productcatalogue-service.yaml", kubeconfigId: "kubernetes")
+          kubernetesDeploy(configs: "kubernetes/productcatalogue-service.yaml", kubeconfigId: "kubernetes")
         }
       }
     }
